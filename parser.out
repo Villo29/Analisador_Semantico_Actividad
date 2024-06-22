@@ -1,0 +1,1129 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    COMMA
+    CONSOLE
+    DIVIDE
+    DOT
+    FLOAT
+    FLOAT_LITERAL
+    FOR
+    GLOBAL
+    IF
+    IN
+    LOG
+    MINUS
+    OUT
+    PRINTLN
+    RANGE
+    SINGLE_QUOTE
+    STRING
+    STRING_LITERAL
+    SYSTEM
+    VAR
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> declarations statements
+Rule 2     declarations -> declarations declaration
+Rule 3     declarations -> declaration
+Rule 4     declaration -> INT ID ASSIGN NUMBER SEMICOLON
+Rule 5     declaration -> INT ID ASSIGN NUMBER_2 SEMICOLON
+Rule 6     declaration -> INT ID ASSIGN NUMBER_3 SEMICOLON
+Rule 7     statements -> statements statement
+Rule 8     statements -> statement
+Rule 9     statement -> if_loop
+Rule 10    statement -> while_loop
+Rule 11    statement -> for_loop
+Rule 12    statement -> input_statement
+Rule 13    statement -> increment_statement
+Rule 14    statement -> assignment_statement
+Rule 15    if_loop -> DO statements ENDDO
+Rule 16    condition -> expression AND expression
+Rule 17    condition -> expression
+Rule 18    expression -> simple_expression comparison_operator simple_expression
+Rule 19    expression -> simple_expression
+Rule 20    expression -> simple_expression ASSIGN simple_expression comparison_operator simple_expression SEMICOLON
+Rule 21    simple_expression -> ID
+Rule 22    simple_expression -> NUMBER
+Rule 23    simple_expression -> NUMBER_2
+Rule 24    simple_expression -> NUMBER_3
+Rule 25    comparison_operator -> EQ
+Rule 26    comparison_operator -> GT
+Rule 27    comparison_operator -> GE
+Rule 28    comparison_operator -> LT
+Rule 29    comparison_operator -> LE
+Rule 30    comparison_operator -> PLUS
+Rule 31    comparison_operator -> TIMES
+Rule 32    comparison_operator -> NE
+Rule 33    while_loop -> WHILE LPAREN condition RPAREN LBRACE statements RBRACE
+Rule 34    for_loop -> WHILE LPAREN INT ID comparison_operator NUMBER RPAREN ENDWHILE
+Rule 35    input_statement -> INPUT LPAREN simple_expression RPAREN SEMICOLON
+Rule 36    increment_statement -> ID PLUS PLUS SEMICOLON
+Rule 37    assignment_statement -> ID ASSIGN expression SEMICOLON
+
+Terminals, with rules where they appear
+
+AND                  : 16
+ASSIGN               : 4 5 6 20 37
+COMMA                : 
+CONSOLE              : 
+DIVIDE               : 
+DO                   : 15
+DOT                  : 
+ENDDO                : 15
+ENDWHILE             : 34
+EQ                   : 25
+FLOAT                : 
+FLOAT_LITERAL        : 
+FOR                  : 
+GE                   : 27
+GLOBAL               : 
+GT                   : 26
+ID                   : 4 5 6 21 34 36 37
+IF                   : 
+IN                   : 
+INPUT                : 35
+INT                  : 4 5 6 34
+LBRACE               : 33
+LE                   : 29
+LOG                  : 
+LPAREN               : 33 34 35
+LT                   : 28
+MINUS                : 
+NE                   : 32
+NUMBER               : 4 22 34
+NUMBER_2             : 5 23
+NUMBER_3             : 6 24
+OUT                  : 
+PLUS                 : 30 36 36
+PRINTLN              : 
+RANGE                : 
+RBRACE               : 33
+RPAREN               : 33 34 35
+SEMICOLON            : 4 5 6 20 35 36 37
+SINGLE_QUOTE         : 
+STRING               : 
+STRING_LITERAL       : 
+SYSTEM               : 
+TIMES                : 31
+VAR                  : 
+WHILE                : 33 34
+error                : 
+
+Nonterminals, with rules where they appear
+
+assignment_statement : 14
+comparison_operator  : 18 20 34
+condition            : 33
+declaration          : 2 3
+declarations         : 1 2
+expression           : 16 16 17 37
+for_loop             : 11
+if_loop              : 9
+increment_statement  : 13
+input_statement      : 12
+program              : 0
+simple_expression    : 18 18 19 20 20 20 35
+statement            : 7 8
+statements           : 1 7 15 33
+while_loop           : 10
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . declarations statements
+    (2) declarations -> . declarations declaration
+    (3) declarations -> . declaration
+    (4) declaration -> . INT ID ASSIGN NUMBER SEMICOLON
+    (5) declaration -> . INT ID ASSIGN NUMBER_2 SEMICOLON
+    (6) declaration -> . INT ID ASSIGN NUMBER_3 SEMICOLON
+
+    INT             shift and go to state 4
+
+    program                        shift and go to state 1
+    declarations                   shift and go to state 2
+    declaration                    shift and go to state 3
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> declarations . statements
+    (2) declarations -> declarations . declaration
+    (7) statements -> . statements statement
+    (8) statements -> . statement
+    (4) declaration -> . INT ID ASSIGN NUMBER SEMICOLON
+    (5) declaration -> . INT ID ASSIGN NUMBER_2 SEMICOLON
+    (6) declaration -> . INT ID ASSIGN NUMBER_3 SEMICOLON
+    (9) statement -> . if_loop
+    (10) statement -> . while_loop
+    (11) statement -> . for_loop
+    (12) statement -> . input_statement
+    (13) statement -> . increment_statement
+    (14) statement -> . assignment_statement
+    (15) if_loop -> . DO statements ENDDO
+    (33) while_loop -> . WHILE LPAREN condition RPAREN LBRACE statements RBRACE
+    (34) for_loop -> . WHILE LPAREN INT ID comparison_operator NUMBER RPAREN ENDWHILE
+    (35) input_statement -> . INPUT LPAREN simple_expression RPAREN SEMICOLON
+    (36) increment_statement -> . ID PLUS PLUS SEMICOLON
+    (37) assignment_statement -> . ID ASSIGN expression SEMICOLON
+
+    INT             shift and go to state 4
+    DO              shift and go to state 15
+    WHILE           shift and go to state 16
+    INPUT           shift and go to state 17
+    ID              shift and go to state 8
+
+    statements                     shift and go to state 5
+    declaration                    shift and go to state 6
+    statement                      shift and go to state 7
+    if_loop                        shift and go to state 9
+    while_loop                     shift and go to state 10
+    for_loop                       shift and go to state 11
+    input_statement                shift and go to state 12
+    increment_statement            shift and go to state 13
+    assignment_statement           shift and go to state 14
+
+state 3
+
+    (3) declarations -> declaration .
+
+    INT             reduce using rule 3 (declarations -> declaration .)
+    DO              reduce using rule 3 (declarations -> declaration .)
+    WHILE           reduce using rule 3 (declarations -> declaration .)
+    INPUT           reduce using rule 3 (declarations -> declaration .)
+    ID              reduce using rule 3 (declarations -> declaration .)
+
+
+state 4
+
+    (4) declaration -> INT . ID ASSIGN NUMBER SEMICOLON
+    (5) declaration -> INT . ID ASSIGN NUMBER_2 SEMICOLON
+    (6) declaration -> INT . ID ASSIGN NUMBER_3 SEMICOLON
+
+    ID              shift and go to state 18
+
+
+state 5
+
+    (1) program -> declarations statements .
+    (7) statements -> statements . statement
+    (9) statement -> . if_loop
+    (10) statement -> . while_loop
+    (11) statement -> . for_loop
+    (12) statement -> . input_statement
+    (13) statement -> . increment_statement
+    (14) statement -> . assignment_statement
+    (15) if_loop -> . DO statements ENDDO
+    (33) while_loop -> . WHILE LPAREN condition RPAREN LBRACE statements RBRACE
+    (34) for_loop -> . WHILE LPAREN INT ID comparison_operator NUMBER RPAREN ENDWHILE
+    (35) input_statement -> . INPUT LPAREN simple_expression RPAREN SEMICOLON
+    (36) increment_statement -> . ID PLUS PLUS SEMICOLON
+    (37) assignment_statement -> . ID ASSIGN expression SEMICOLON
+
+    $end            reduce using rule 1 (program -> declarations statements .)
+    DO              shift and go to state 15
+    WHILE           shift and go to state 16
+    INPUT           shift and go to state 17
+    ID              shift and go to state 8
+
+    statement                      shift and go to state 19
+    if_loop                        shift and go to state 9
+    while_loop                     shift and go to state 10
+    for_loop                       shift and go to state 11
+    input_statement                shift and go to state 12
+    increment_statement            shift and go to state 13
+    assignment_statement           shift and go to state 14
+
+state 6
+
+    (2) declarations -> declarations declaration .
+
+    INT             reduce using rule 2 (declarations -> declarations declaration .)
+    DO              reduce using rule 2 (declarations -> declarations declaration .)
+    WHILE           reduce using rule 2 (declarations -> declarations declaration .)
+    INPUT           reduce using rule 2 (declarations -> declarations declaration .)
+    ID              reduce using rule 2 (declarations -> declarations declaration .)
+
+
+state 7
+
+    (8) statements -> statement .
+
+    DO              reduce using rule 8 (statements -> statement .)
+    WHILE           reduce using rule 8 (statements -> statement .)
+    INPUT           reduce using rule 8 (statements -> statement .)
+    ID              reduce using rule 8 (statements -> statement .)
+    $end            reduce using rule 8 (statements -> statement .)
+    ENDDO           reduce using rule 8 (statements -> statement .)
+    RBRACE          reduce using rule 8 (statements -> statement .)
+
+
+state 8
+
+    (36) increment_statement -> ID . PLUS PLUS SEMICOLON
+    (37) assignment_statement -> ID . ASSIGN expression SEMICOLON
+
+    PLUS            shift and go to state 20
+    ASSIGN          shift and go to state 21
+
+
+state 9
+
+    (9) statement -> if_loop .
+
+    DO              reduce using rule 9 (statement -> if_loop .)
+    WHILE           reduce using rule 9 (statement -> if_loop .)
+    INPUT           reduce using rule 9 (statement -> if_loop .)
+    ID              reduce using rule 9 (statement -> if_loop .)
+    $end            reduce using rule 9 (statement -> if_loop .)
+    ENDDO           reduce using rule 9 (statement -> if_loop .)
+    RBRACE          reduce using rule 9 (statement -> if_loop .)
+
+
+state 10
+
+    (10) statement -> while_loop .
+
+    DO              reduce using rule 10 (statement -> while_loop .)
+    WHILE           reduce using rule 10 (statement -> while_loop .)
+    INPUT           reduce using rule 10 (statement -> while_loop .)
+    ID              reduce using rule 10 (statement -> while_loop .)
+    $end            reduce using rule 10 (statement -> while_loop .)
+    ENDDO           reduce using rule 10 (statement -> while_loop .)
+    RBRACE          reduce using rule 10 (statement -> while_loop .)
+
+
+state 11
+
+    (11) statement -> for_loop .
+
+    DO              reduce using rule 11 (statement -> for_loop .)
+    WHILE           reduce using rule 11 (statement -> for_loop .)
+    INPUT           reduce using rule 11 (statement -> for_loop .)
+    ID              reduce using rule 11 (statement -> for_loop .)
+    $end            reduce using rule 11 (statement -> for_loop .)
+    ENDDO           reduce using rule 11 (statement -> for_loop .)
+    RBRACE          reduce using rule 11 (statement -> for_loop .)
+
+
+state 12
+
+    (12) statement -> input_statement .
+
+    DO              reduce using rule 12 (statement -> input_statement .)
+    WHILE           reduce using rule 12 (statement -> input_statement .)
+    INPUT           reduce using rule 12 (statement -> input_statement .)
+    ID              reduce using rule 12 (statement -> input_statement .)
+    $end            reduce using rule 12 (statement -> input_statement .)
+    ENDDO           reduce using rule 12 (statement -> input_statement .)
+    RBRACE          reduce using rule 12 (statement -> input_statement .)
+
+
+state 13
+
+    (13) statement -> increment_statement .
+
+    DO              reduce using rule 13 (statement -> increment_statement .)
+    WHILE           reduce using rule 13 (statement -> increment_statement .)
+    INPUT           reduce using rule 13 (statement -> increment_statement .)
+    ID              reduce using rule 13 (statement -> increment_statement .)
+    $end            reduce using rule 13 (statement -> increment_statement .)
+    ENDDO           reduce using rule 13 (statement -> increment_statement .)
+    RBRACE          reduce using rule 13 (statement -> increment_statement .)
+
+
+state 14
+
+    (14) statement -> assignment_statement .
+
+    DO              reduce using rule 14 (statement -> assignment_statement .)
+    WHILE           reduce using rule 14 (statement -> assignment_statement .)
+    INPUT           reduce using rule 14 (statement -> assignment_statement .)
+    ID              reduce using rule 14 (statement -> assignment_statement .)
+    $end            reduce using rule 14 (statement -> assignment_statement .)
+    ENDDO           reduce using rule 14 (statement -> assignment_statement .)
+    RBRACE          reduce using rule 14 (statement -> assignment_statement .)
+
+
+state 15
+
+    (15) if_loop -> DO . statements ENDDO
+    (7) statements -> . statements statement
+    (8) statements -> . statement
+    (9) statement -> . if_loop
+    (10) statement -> . while_loop
+    (11) statement -> . for_loop
+    (12) statement -> . input_statement
+    (13) statement -> . increment_statement
+    (14) statement -> . assignment_statement
+    (15) if_loop -> . DO statements ENDDO
+    (33) while_loop -> . WHILE LPAREN condition RPAREN LBRACE statements RBRACE
+    (34) for_loop -> . WHILE LPAREN INT ID comparison_operator NUMBER RPAREN ENDWHILE
+    (35) input_statement -> . INPUT LPAREN simple_expression RPAREN SEMICOLON
+    (36) increment_statement -> . ID PLUS PLUS SEMICOLON
+    (37) assignment_statement -> . ID ASSIGN expression SEMICOLON
+
+    DO              shift and go to state 15
+    WHILE           shift and go to state 16
+    INPUT           shift and go to state 17
+    ID              shift and go to state 8
+
+    statements                     shift and go to state 22
+    statement                      shift and go to state 7
+    if_loop                        shift and go to state 9
+    while_loop                     shift and go to state 10
+    for_loop                       shift and go to state 11
+    input_statement                shift and go to state 12
+    increment_statement            shift and go to state 13
+    assignment_statement           shift and go to state 14
+
+state 16
+
+    (33) while_loop -> WHILE . LPAREN condition RPAREN LBRACE statements RBRACE
+    (34) for_loop -> WHILE . LPAREN INT ID comparison_operator NUMBER RPAREN ENDWHILE
+
+    LPAREN          shift and go to state 23
+
+
+state 17
+
+    (35) input_statement -> INPUT . LPAREN simple_expression RPAREN SEMICOLON
+
+    LPAREN          shift and go to state 24
+
+
+state 18
+
+    (4) declaration -> INT ID . ASSIGN NUMBER SEMICOLON
+    (5) declaration -> INT ID . ASSIGN NUMBER_2 SEMICOLON
+    (6) declaration -> INT ID . ASSIGN NUMBER_3 SEMICOLON
+
+    ASSIGN          shift and go to state 25
+
+
+state 19
+
+    (7) statements -> statements statement .
+
+    DO              reduce using rule 7 (statements -> statements statement .)
+    WHILE           reduce using rule 7 (statements -> statements statement .)
+    INPUT           reduce using rule 7 (statements -> statements statement .)
+    ID              reduce using rule 7 (statements -> statements statement .)
+    $end            reduce using rule 7 (statements -> statements statement .)
+    ENDDO           reduce using rule 7 (statements -> statements statement .)
+    RBRACE          reduce using rule 7 (statements -> statements statement .)
+
+
+state 20
+
+    (36) increment_statement -> ID PLUS . PLUS SEMICOLON
+
+    PLUS            shift and go to state 26
+
+
+state 21
+
+    (37) assignment_statement -> ID ASSIGN . expression SEMICOLON
+    (18) expression -> . simple_expression comparison_operator simple_expression
+    (19) expression -> . simple_expression
+    (20) expression -> . simple_expression ASSIGN simple_expression comparison_operator simple_expression SEMICOLON
+    (21) simple_expression -> . ID
+    (22) simple_expression -> . NUMBER
+    (23) simple_expression -> . NUMBER_2
+    (24) simple_expression -> . NUMBER_3
+
+    ID              shift and go to state 27
+    NUMBER          shift and go to state 30
+    NUMBER_2        shift and go to state 31
+    NUMBER_3        shift and go to state 32
+
+    expression                     shift and go to state 28
+    simple_expression              shift and go to state 29
+
+state 22
+
+    (15) if_loop -> DO statements . ENDDO
+    (7) statements -> statements . statement
+    (9) statement -> . if_loop
+    (10) statement -> . while_loop
+    (11) statement -> . for_loop
+    (12) statement -> . input_statement
+    (13) statement -> . increment_statement
+    (14) statement -> . assignment_statement
+    (15) if_loop -> . DO statements ENDDO
+    (33) while_loop -> . WHILE LPAREN condition RPAREN LBRACE statements RBRACE
+    (34) for_loop -> . WHILE LPAREN INT ID comparison_operator NUMBER RPAREN ENDWHILE
+    (35) input_statement -> . INPUT LPAREN simple_expression RPAREN SEMICOLON
+    (36) increment_statement -> . ID PLUS PLUS SEMICOLON
+    (37) assignment_statement -> . ID ASSIGN expression SEMICOLON
+
+    ENDDO           shift and go to state 33
+    DO              shift and go to state 15
+    WHILE           shift and go to state 16
+    INPUT           shift and go to state 17
+    ID              shift and go to state 8
+
+    statement                      shift and go to state 19
+    if_loop                        shift and go to state 9
+    while_loop                     shift and go to state 10
+    for_loop                       shift and go to state 11
+    input_statement                shift and go to state 12
+    increment_statement            shift and go to state 13
+    assignment_statement           shift and go to state 14
+
+state 23
+
+    (33) while_loop -> WHILE LPAREN . condition RPAREN LBRACE statements RBRACE
+    (34) for_loop -> WHILE LPAREN . INT ID comparison_operator NUMBER RPAREN ENDWHILE
+    (16) condition -> . expression AND expression
+    (17) condition -> . expression
+    (18) expression -> . simple_expression comparison_operator simple_expression
+    (19) expression -> . simple_expression
+    (20) expression -> . simple_expression ASSIGN simple_expression comparison_operator simple_expression SEMICOLON
+    (21) simple_expression -> . ID
+    (22) simple_expression -> . NUMBER
+    (23) simple_expression -> . NUMBER_2
+    (24) simple_expression -> . NUMBER_3
+
+    INT             shift and go to state 35
+    ID              shift and go to state 27
+    NUMBER          shift and go to state 30
+    NUMBER_2        shift and go to state 31
+    NUMBER_3        shift and go to state 32
+
+    condition                      shift and go to state 34
+    expression                     shift and go to state 36
+    simple_expression              shift and go to state 29
+
+state 24
+
+    (35) input_statement -> INPUT LPAREN . simple_expression RPAREN SEMICOLON
+    (21) simple_expression -> . ID
+    (22) simple_expression -> . NUMBER
+    (23) simple_expression -> . NUMBER_2
+    (24) simple_expression -> . NUMBER_3
+
+    ID              shift and go to state 27
+    NUMBER          shift and go to state 30
+    NUMBER_2        shift and go to state 31
+    NUMBER_3        shift and go to state 32
+
+    simple_expression              shift and go to state 37
+
+state 25
+
+    (4) declaration -> INT ID ASSIGN . NUMBER SEMICOLON
+    (5) declaration -> INT ID ASSIGN . NUMBER_2 SEMICOLON
+    (6) declaration -> INT ID ASSIGN . NUMBER_3 SEMICOLON
+
+    NUMBER          shift and go to state 38
+    NUMBER_2        shift and go to state 39
+    NUMBER_3        shift and go to state 40
+
+
+state 26
+
+    (36) increment_statement -> ID PLUS PLUS . SEMICOLON
+
+    SEMICOLON       shift and go to state 41
+
+
+state 27
+
+    (21) simple_expression -> ID .
+
+    ASSIGN          reduce using rule 21 (simple_expression -> ID .)
+    EQ              reduce using rule 21 (simple_expression -> ID .)
+    GT              reduce using rule 21 (simple_expression -> ID .)
+    GE              reduce using rule 21 (simple_expression -> ID .)
+    LT              reduce using rule 21 (simple_expression -> ID .)
+    LE              reduce using rule 21 (simple_expression -> ID .)
+    PLUS            reduce using rule 21 (simple_expression -> ID .)
+    TIMES           reduce using rule 21 (simple_expression -> ID .)
+    NE              reduce using rule 21 (simple_expression -> ID .)
+    SEMICOLON       reduce using rule 21 (simple_expression -> ID .)
+    AND             reduce using rule 21 (simple_expression -> ID .)
+    RPAREN          reduce using rule 21 (simple_expression -> ID .)
+
+
+state 28
+
+    (37) assignment_statement -> ID ASSIGN expression . SEMICOLON
+
+    SEMICOLON       shift and go to state 42
+
+
+state 29
+
+    (18) expression -> simple_expression . comparison_operator simple_expression
+    (19) expression -> simple_expression .
+    (20) expression -> simple_expression . ASSIGN simple_expression comparison_operator simple_expression SEMICOLON
+    (25) comparison_operator -> . EQ
+    (26) comparison_operator -> . GT
+    (27) comparison_operator -> . GE
+    (28) comparison_operator -> . LT
+    (29) comparison_operator -> . LE
+    (30) comparison_operator -> . PLUS
+    (31) comparison_operator -> . TIMES
+    (32) comparison_operator -> . NE
+
+    SEMICOLON       reduce using rule 19 (expression -> simple_expression .)
+    AND             reduce using rule 19 (expression -> simple_expression .)
+    RPAREN          reduce using rule 19 (expression -> simple_expression .)
+    ASSIGN          shift and go to state 44
+    EQ              shift and go to state 45
+    GT              shift and go to state 46
+    GE              shift and go to state 47
+    LT              shift and go to state 48
+    LE              shift and go to state 49
+    PLUS            shift and go to state 50
+    TIMES           shift and go to state 51
+    NE              shift and go to state 52
+
+    comparison_operator            shift and go to state 43
+
+state 30
+
+    (22) simple_expression -> NUMBER .
+
+    ASSIGN          reduce using rule 22 (simple_expression -> NUMBER .)
+    EQ              reduce using rule 22 (simple_expression -> NUMBER .)
+    GT              reduce using rule 22 (simple_expression -> NUMBER .)
+    GE              reduce using rule 22 (simple_expression -> NUMBER .)
+    LT              reduce using rule 22 (simple_expression -> NUMBER .)
+    LE              reduce using rule 22 (simple_expression -> NUMBER .)
+    PLUS            reduce using rule 22 (simple_expression -> NUMBER .)
+    TIMES           reduce using rule 22 (simple_expression -> NUMBER .)
+    NE              reduce using rule 22 (simple_expression -> NUMBER .)
+    SEMICOLON       reduce using rule 22 (simple_expression -> NUMBER .)
+    AND             reduce using rule 22 (simple_expression -> NUMBER .)
+    RPAREN          reduce using rule 22 (simple_expression -> NUMBER .)
+
+
+state 31
+
+    (23) simple_expression -> NUMBER_2 .
+
+    ASSIGN          reduce using rule 23 (simple_expression -> NUMBER_2 .)
+    EQ              reduce using rule 23 (simple_expression -> NUMBER_2 .)
+    GT              reduce using rule 23 (simple_expression -> NUMBER_2 .)
+    GE              reduce using rule 23 (simple_expression -> NUMBER_2 .)
+    LT              reduce using rule 23 (simple_expression -> NUMBER_2 .)
+    LE              reduce using rule 23 (simple_expression -> NUMBER_2 .)
+    PLUS            reduce using rule 23 (simple_expression -> NUMBER_2 .)
+    TIMES           reduce using rule 23 (simple_expression -> NUMBER_2 .)
+    NE              reduce using rule 23 (simple_expression -> NUMBER_2 .)
+    SEMICOLON       reduce using rule 23 (simple_expression -> NUMBER_2 .)
+    AND             reduce using rule 23 (simple_expression -> NUMBER_2 .)
+    RPAREN          reduce using rule 23 (simple_expression -> NUMBER_2 .)
+
+
+state 32
+
+    (24) simple_expression -> NUMBER_3 .
+
+    ASSIGN          reduce using rule 24 (simple_expression -> NUMBER_3 .)
+    EQ              reduce using rule 24 (simple_expression -> NUMBER_3 .)
+    GT              reduce using rule 24 (simple_expression -> NUMBER_3 .)
+    GE              reduce using rule 24 (simple_expression -> NUMBER_3 .)
+    LT              reduce using rule 24 (simple_expression -> NUMBER_3 .)
+    LE              reduce using rule 24 (simple_expression -> NUMBER_3 .)
+    PLUS            reduce using rule 24 (simple_expression -> NUMBER_3 .)
+    TIMES           reduce using rule 24 (simple_expression -> NUMBER_3 .)
+    NE              reduce using rule 24 (simple_expression -> NUMBER_3 .)
+    SEMICOLON       reduce using rule 24 (simple_expression -> NUMBER_3 .)
+    AND             reduce using rule 24 (simple_expression -> NUMBER_3 .)
+    RPAREN          reduce using rule 24 (simple_expression -> NUMBER_3 .)
+
+
+state 33
+
+    (15) if_loop -> DO statements ENDDO .
+
+    DO              reduce using rule 15 (if_loop -> DO statements ENDDO .)
+    WHILE           reduce using rule 15 (if_loop -> DO statements ENDDO .)
+    INPUT           reduce using rule 15 (if_loop -> DO statements ENDDO .)
+    ID              reduce using rule 15 (if_loop -> DO statements ENDDO .)
+    $end            reduce using rule 15 (if_loop -> DO statements ENDDO .)
+    ENDDO           reduce using rule 15 (if_loop -> DO statements ENDDO .)
+    RBRACE          reduce using rule 15 (if_loop -> DO statements ENDDO .)
+
+
+state 34
+
+    (33) while_loop -> WHILE LPAREN condition . RPAREN LBRACE statements RBRACE
+
+    RPAREN          shift and go to state 53
+
+
+state 35
+
+    (34) for_loop -> WHILE LPAREN INT . ID comparison_operator NUMBER RPAREN ENDWHILE
+
+    ID              shift and go to state 54
+
+
+state 36
+
+    (16) condition -> expression . AND expression
+    (17) condition -> expression .
+
+    AND             shift and go to state 55
+    RPAREN          reduce using rule 17 (condition -> expression .)
+
+
+state 37
+
+    (35) input_statement -> INPUT LPAREN simple_expression . RPAREN SEMICOLON
+
+    RPAREN          shift and go to state 56
+
+
+state 38
+
+    (4) declaration -> INT ID ASSIGN NUMBER . SEMICOLON
+
+    SEMICOLON       shift and go to state 57
+
+
+state 39
+
+    (5) declaration -> INT ID ASSIGN NUMBER_2 . SEMICOLON
+
+    SEMICOLON       shift and go to state 58
+
+
+state 40
+
+    (6) declaration -> INT ID ASSIGN NUMBER_3 . SEMICOLON
+
+    SEMICOLON       shift and go to state 59
+
+
+state 41
+
+    (36) increment_statement -> ID PLUS PLUS SEMICOLON .
+
+    DO              reduce using rule 36 (increment_statement -> ID PLUS PLUS SEMICOLON .)
+    WHILE           reduce using rule 36 (increment_statement -> ID PLUS PLUS SEMICOLON .)
+    INPUT           reduce using rule 36 (increment_statement -> ID PLUS PLUS SEMICOLON .)
+    ID              reduce using rule 36 (increment_statement -> ID PLUS PLUS SEMICOLON .)
+    $end            reduce using rule 36 (increment_statement -> ID PLUS PLUS SEMICOLON .)
+    ENDDO           reduce using rule 36 (increment_statement -> ID PLUS PLUS SEMICOLON .)
+    RBRACE          reduce using rule 36 (increment_statement -> ID PLUS PLUS SEMICOLON .)
+
+
+state 42
+
+    (37) assignment_statement -> ID ASSIGN expression SEMICOLON .
+
+    DO              reduce using rule 37 (assignment_statement -> ID ASSIGN expression SEMICOLON .)
+    WHILE           reduce using rule 37 (assignment_statement -> ID ASSIGN expression SEMICOLON .)
+    INPUT           reduce using rule 37 (assignment_statement -> ID ASSIGN expression SEMICOLON .)
+    ID              reduce using rule 37 (assignment_statement -> ID ASSIGN expression SEMICOLON .)
+    $end            reduce using rule 37 (assignment_statement -> ID ASSIGN expression SEMICOLON .)
+    ENDDO           reduce using rule 37 (assignment_statement -> ID ASSIGN expression SEMICOLON .)
+    RBRACE          reduce using rule 37 (assignment_statement -> ID ASSIGN expression SEMICOLON .)
+
+
+state 43
+
+    (18) expression -> simple_expression comparison_operator . simple_expression
+    (21) simple_expression -> . ID
+    (22) simple_expression -> . NUMBER
+    (23) simple_expression -> . NUMBER_2
+    (24) simple_expression -> . NUMBER_3
+
+    ID              shift and go to state 27
+    NUMBER          shift and go to state 30
+    NUMBER_2        shift and go to state 31
+    NUMBER_3        shift and go to state 32
+
+    simple_expression              shift and go to state 60
+
+state 44
+
+    (20) expression -> simple_expression ASSIGN . simple_expression comparison_operator simple_expression SEMICOLON
+    (21) simple_expression -> . ID
+    (22) simple_expression -> . NUMBER
+    (23) simple_expression -> . NUMBER_2
+    (24) simple_expression -> . NUMBER_3
+
+    ID              shift and go to state 27
+    NUMBER          shift and go to state 30
+    NUMBER_2        shift and go to state 31
+    NUMBER_3        shift and go to state 32
+
+    simple_expression              shift and go to state 61
+
+state 45
+
+    (25) comparison_operator -> EQ .
+
+    ID              reduce using rule 25 (comparison_operator -> EQ .)
+    NUMBER          reduce using rule 25 (comparison_operator -> EQ .)
+    NUMBER_2        reduce using rule 25 (comparison_operator -> EQ .)
+    NUMBER_3        reduce using rule 25 (comparison_operator -> EQ .)
+
+
+state 46
+
+    (26) comparison_operator -> GT .
+
+    ID              reduce using rule 26 (comparison_operator -> GT .)
+    NUMBER          reduce using rule 26 (comparison_operator -> GT .)
+    NUMBER_2        reduce using rule 26 (comparison_operator -> GT .)
+    NUMBER_3        reduce using rule 26 (comparison_operator -> GT .)
+
+
+state 47
+
+    (27) comparison_operator -> GE .
+
+    ID              reduce using rule 27 (comparison_operator -> GE .)
+    NUMBER          reduce using rule 27 (comparison_operator -> GE .)
+    NUMBER_2        reduce using rule 27 (comparison_operator -> GE .)
+    NUMBER_3        reduce using rule 27 (comparison_operator -> GE .)
+
+
+state 48
+
+    (28) comparison_operator -> LT .
+
+    ID              reduce using rule 28 (comparison_operator -> LT .)
+    NUMBER          reduce using rule 28 (comparison_operator -> LT .)
+    NUMBER_2        reduce using rule 28 (comparison_operator -> LT .)
+    NUMBER_3        reduce using rule 28 (comparison_operator -> LT .)
+
+
+state 49
+
+    (29) comparison_operator -> LE .
+
+    ID              reduce using rule 29 (comparison_operator -> LE .)
+    NUMBER          reduce using rule 29 (comparison_operator -> LE .)
+    NUMBER_2        reduce using rule 29 (comparison_operator -> LE .)
+    NUMBER_3        reduce using rule 29 (comparison_operator -> LE .)
+
+
+state 50
+
+    (30) comparison_operator -> PLUS .
+
+    ID              reduce using rule 30 (comparison_operator -> PLUS .)
+    NUMBER          reduce using rule 30 (comparison_operator -> PLUS .)
+    NUMBER_2        reduce using rule 30 (comparison_operator -> PLUS .)
+    NUMBER_3        reduce using rule 30 (comparison_operator -> PLUS .)
+
+
+state 51
+
+    (31) comparison_operator -> TIMES .
+
+    ID              reduce using rule 31 (comparison_operator -> TIMES .)
+    NUMBER          reduce using rule 31 (comparison_operator -> TIMES .)
+    NUMBER_2        reduce using rule 31 (comparison_operator -> TIMES .)
+    NUMBER_3        reduce using rule 31 (comparison_operator -> TIMES .)
+
+
+state 52
+
+    (32) comparison_operator -> NE .
+
+    ID              reduce using rule 32 (comparison_operator -> NE .)
+    NUMBER          reduce using rule 32 (comparison_operator -> NE .)
+    NUMBER_2        reduce using rule 32 (comparison_operator -> NE .)
+    NUMBER_3        reduce using rule 32 (comparison_operator -> NE .)
+
+
+state 53
+
+    (33) while_loop -> WHILE LPAREN condition RPAREN . LBRACE statements RBRACE
+
+    LBRACE          shift and go to state 62
+
+
+state 54
+
+    (34) for_loop -> WHILE LPAREN INT ID . comparison_operator NUMBER RPAREN ENDWHILE
+    (25) comparison_operator -> . EQ
+    (26) comparison_operator -> . GT
+    (27) comparison_operator -> . GE
+    (28) comparison_operator -> . LT
+    (29) comparison_operator -> . LE
+    (30) comparison_operator -> . PLUS
+    (31) comparison_operator -> . TIMES
+    (32) comparison_operator -> . NE
+
+    EQ              shift and go to state 45
+    GT              shift and go to state 46
+    GE              shift and go to state 47
+    LT              shift and go to state 48
+    LE              shift and go to state 49
+    PLUS            shift and go to state 50
+    TIMES           shift and go to state 51
+    NE              shift and go to state 52
+
+    comparison_operator            shift and go to state 63
+
+state 55
+
+    (16) condition -> expression AND . expression
+    (18) expression -> . simple_expression comparison_operator simple_expression
+    (19) expression -> . simple_expression
+    (20) expression -> . simple_expression ASSIGN simple_expression comparison_operator simple_expression SEMICOLON
+    (21) simple_expression -> . ID
+    (22) simple_expression -> . NUMBER
+    (23) simple_expression -> . NUMBER_2
+    (24) simple_expression -> . NUMBER_3
+
+    ID              shift and go to state 27
+    NUMBER          shift and go to state 30
+    NUMBER_2        shift and go to state 31
+    NUMBER_3        shift and go to state 32
+
+    expression                     shift and go to state 64
+    simple_expression              shift and go to state 29
+
+state 56
+
+    (35) input_statement -> INPUT LPAREN simple_expression RPAREN . SEMICOLON
+
+    SEMICOLON       shift and go to state 65
+
+
+state 57
+
+    (4) declaration -> INT ID ASSIGN NUMBER SEMICOLON .
+
+    INT             reduce using rule 4 (declaration -> INT ID ASSIGN NUMBER SEMICOLON .)
+    DO              reduce using rule 4 (declaration -> INT ID ASSIGN NUMBER SEMICOLON .)
+    WHILE           reduce using rule 4 (declaration -> INT ID ASSIGN NUMBER SEMICOLON .)
+    INPUT           reduce using rule 4 (declaration -> INT ID ASSIGN NUMBER SEMICOLON .)
+    ID              reduce using rule 4 (declaration -> INT ID ASSIGN NUMBER SEMICOLON .)
+
+
+state 58
+
+    (5) declaration -> INT ID ASSIGN NUMBER_2 SEMICOLON .
+
+    INT             reduce using rule 5 (declaration -> INT ID ASSIGN NUMBER_2 SEMICOLON .)
+    DO              reduce using rule 5 (declaration -> INT ID ASSIGN NUMBER_2 SEMICOLON .)
+    WHILE           reduce using rule 5 (declaration -> INT ID ASSIGN NUMBER_2 SEMICOLON .)
+    INPUT           reduce using rule 5 (declaration -> INT ID ASSIGN NUMBER_2 SEMICOLON .)
+    ID              reduce using rule 5 (declaration -> INT ID ASSIGN NUMBER_2 SEMICOLON .)
+
+
+state 59
+
+    (6) declaration -> INT ID ASSIGN NUMBER_3 SEMICOLON .
+
+    INT             reduce using rule 6 (declaration -> INT ID ASSIGN NUMBER_3 SEMICOLON .)
+    DO              reduce using rule 6 (declaration -> INT ID ASSIGN NUMBER_3 SEMICOLON .)
+    WHILE           reduce using rule 6 (declaration -> INT ID ASSIGN NUMBER_3 SEMICOLON .)
+    INPUT           reduce using rule 6 (declaration -> INT ID ASSIGN NUMBER_3 SEMICOLON .)
+    ID              reduce using rule 6 (declaration -> INT ID ASSIGN NUMBER_3 SEMICOLON .)
+
+
+state 60
+
+    (18) expression -> simple_expression comparison_operator simple_expression .
+
+    SEMICOLON       reduce using rule 18 (expression -> simple_expression comparison_operator simple_expression .)
+    AND             reduce using rule 18 (expression -> simple_expression comparison_operator simple_expression .)
+    RPAREN          reduce using rule 18 (expression -> simple_expression comparison_operator simple_expression .)
+
+
+state 61
+
+    (20) expression -> simple_expression ASSIGN simple_expression . comparison_operator simple_expression SEMICOLON
+    (25) comparison_operator -> . EQ
+    (26) comparison_operator -> . GT
+    (27) comparison_operator -> . GE
+    (28) comparison_operator -> . LT
+    (29) comparison_operator -> . LE
+    (30) comparison_operator -> . PLUS
+    (31) comparison_operator -> . TIMES
+    (32) comparison_operator -> . NE
+
+    EQ              shift and go to state 45
+    GT              shift and go to state 46
+    GE              shift and go to state 47
+    LT              shift and go to state 48
+    LE              shift and go to state 49
+    PLUS            shift and go to state 50
+    TIMES           shift and go to state 51
+    NE              shift and go to state 52
+
+    comparison_operator            shift and go to state 66
+
+state 62
+
+    (33) while_loop -> WHILE LPAREN condition RPAREN LBRACE . statements RBRACE
+    (7) statements -> . statements statement
+    (8) statements -> . statement
+    (9) statement -> . if_loop
+    (10) statement -> . while_loop
+    (11) statement -> . for_loop
+    (12) statement -> . input_statement
+    (13) statement -> . increment_statement
+    (14) statement -> . assignment_statement
+    (15) if_loop -> . DO statements ENDDO
+    (33) while_loop -> . WHILE LPAREN condition RPAREN LBRACE statements RBRACE
+    (34) for_loop -> . WHILE LPAREN INT ID comparison_operator NUMBER RPAREN ENDWHILE
+    (35) input_statement -> . INPUT LPAREN simple_expression RPAREN SEMICOLON
+    (36) increment_statement -> . ID PLUS PLUS SEMICOLON
+    (37) assignment_statement -> . ID ASSIGN expression SEMICOLON
+
+    DO              shift and go to state 15
+    WHILE           shift and go to state 16
+    INPUT           shift and go to state 17
+    ID              shift and go to state 8
+
+    statements                     shift and go to state 67
+    statement                      shift and go to state 7
+    if_loop                        shift and go to state 9
+    while_loop                     shift and go to state 10
+    for_loop                       shift and go to state 11
+    input_statement                shift and go to state 12
+    increment_statement            shift and go to state 13
+    assignment_statement           shift and go to state 14
+
+state 63
+
+    (34) for_loop -> WHILE LPAREN INT ID comparison_operator . NUMBER RPAREN ENDWHILE
+
+    NUMBER          shift and go to state 68
+
+
+state 64
+
+    (16) condition -> expression AND expression .
+
+    RPAREN          reduce using rule 16 (condition -> expression AND expression .)
+
+
+state 65
+
+    (35) input_statement -> INPUT LPAREN simple_expression RPAREN SEMICOLON .
+
+    DO              reduce using rule 35 (input_statement -> INPUT LPAREN simple_expression RPAREN SEMICOLON .)
+    WHILE           reduce using rule 35 (input_statement -> INPUT LPAREN simple_expression RPAREN SEMICOLON .)
+    INPUT           reduce using rule 35 (input_statement -> INPUT LPAREN simple_expression RPAREN SEMICOLON .)
+    ID              reduce using rule 35 (input_statement -> INPUT LPAREN simple_expression RPAREN SEMICOLON .)
+    $end            reduce using rule 35 (input_statement -> INPUT LPAREN simple_expression RPAREN SEMICOLON .)
+    ENDDO           reduce using rule 35 (input_statement -> INPUT LPAREN simple_expression RPAREN SEMICOLON .)
+    RBRACE          reduce using rule 35 (input_statement -> INPUT LPAREN simple_expression RPAREN SEMICOLON .)
+
+
+state 66
+
+    (20) expression -> simple_expression ASSIGN simple_expression comparison_operator . simple_expression SEMICOLON
+    (21) simple_expression -> . ID
+    (22) simple_expression -> . NUMBER
+    (23) simple_expression -> . NUMBER_2
+    (24) simple_expression -> . NUMBER_3
+
+    ID              shift and go to state 27
+    NUMBER          shift and go to state 30
+    NUMBER_2        shift and go to state 31
+    NUMBER_3        shift and go to state 32
+
+    simple_expression              shift and go to state 69
+
+state 67
+
+    (33) while_loop -> WHILE LPAREN condition RPAREN LBRACE statements . RBRACE
+    (7) statements -> statements . statement
+    (9) statement -> . if_loop
+    (10) statement -> . while_loop
+    (11) statement -> . for_loop
+    (12) statement -> . input_statement
+    (13) statement -> . increment_statement
+    (14) statement -> . assignment_statement
+    (15) if_loop -> . DO statements ENDDO
+    (33) while_loop -> . WHILE LPAREN condition RPAREN LBRACE statements RBRACE
+    (34) for_loop -> . WHILE LPAREN INT ID comparison_operator NUMBER RPAREN ENDWHILE
+    (35) input_statement -> . INPUT LPAREN simple_expression RPAREN SEMICOLON
+    (36) increment_statement -> . ID PLUS PLUS SEMICOLON
+    (37) assignment_statement -> . ID ASSIGN expression SEMICOLON
+
+    RBRACE          shift and go to state 70
+    DO              shift and go to state 15
+    WHILE           shift and go to state 16
+    INPUT           shift and go to state 17
+    ID              shift and go to state 8
+
+    statement                      shift and go to state 19
+    if_loop                        shift and go to state 9
+    while_loop                     shift and go to state 10
+    for_loop                       shift and go to state 11
+    input_statement                shift and go to state 12
+    increment_statement            shift and go to state 13
+    assignment_statement           shift and go to state 14
+
+state 68
+
+    (34) for_loop -> WHILE LPAREN INT ID comparison_operator NUMBER . RPAREN ENDWHILE
+
+    RPAREN          shift and go to state 71
+
+
+state 69
+
+    (20) expression -> simple_expression ASSIGN simple_expression comparison_operator simple_expression . SEMICOLON
+
+    SEMICOLON       shift and go to state 72
+
+
+state 70
+
+    (33) while_loop -> WHILE LPAREN condition RPAREN LBRACE statements RBRACE .
+
+    DO              reduce using rule 33 (while_loop -> WHILE LPAREN condition RPAREN LBRACE statements RBRACE .)
+    WHILE           reduce using rule 33 (while_loop -> WHILE LPAREN condition RPAREN LBRACE statements RBRACE .)
+    INPUT           reduce using rule 33 (while_loop -> WHILE LPAREN condition RPAREN LBRACE statements RBRACE .)
+    ID              reduce using rule 33 (while_loop -> WHILE LPAREN condition RPAREN LBRACE statements RBRACE .)
+    $end            reduce using rule 33 (while_loop -> WHILE LPAREN condition RPAREN LBRACE statements RBRACE .)
+    ENDDO           reduce using rule 33 (while_loop -> WHILE LPAREN condition RPAREN LBRACE statements RBRACE .)
+    RBRACE          reduce using rule 33 (while_loop -> WHILE LPAREN condition RPAREN LBRACE statements RBRACE .)
+
+
+state 71
+
+    (34) for_loop -> WHILE LPAREN INT ID comparison_operator NUMBER RPAREN . ENDWHILE
+
+    ENDWHILE        shift and go to state 73
+
+
+state 72
+
+    (20) expression -> simple_expression ASSIGN simple_expression comparison_operator simple_expression SEMICOLON .
+
+    SEMICOLON       reduce using rule 20 (expression -> simple_expression ASSIGN simple_expression comparison_operator simple_expression SEMICOLON .)
+    AND             reduce using rule 20 (expression -> simple_expression ASSIGN simple_expression comparison_operator simple_expression SEMICOLON .)
+    RPAREN          reduce using rule 20 (expression -> simple_expression ASSIGN simple_expression comparison_operator simple_expression SEMICOLON .)
+
+
+state 73
+
+    (34) for_loop -> WHILE LPAREN INT ID comparison_operator NUMBER RPAREN ENDWHILE .
+
+    DO              reduce using rule 34 (for_loop -> WHILE LPAREN INT ID comparison_operator NUMBER RPAREN ENDWHILE .)
+    WHILE           reduce using rule 34 (for_loop -> WHILE LPAREN INT ID comparison_operator NUMBER RPAREN ENDWHILE .)
+    INPUT           reduce using rule 34 (for_loop -> WHILE LPAREN INT ID comparison_operator NUMBER RPAREN ENDWHILE .)
+    ID              reduce using rule 34 (for_loop -> WHILE LPAREN INT ID comparison_operator NUMBER RPAREN ENDWHILE .)
+    $end            reduce using rule 34 (for_loop -> WHILE LPAREN INT ID comparison_operator NUMBER RPAREN ENDWHILE .)
+    ENDDO           reduce using rule 34 (for_loop -> WHILE LPAREN INT ID comparison_operator NUMBER RPAREN ENDWHILE .)
+    RBRACE          reduce using rule 34 (for_loop -> WHILE LPAREN INT ID comparison_operator NUMBER RPAREN ENDWHILE .)
+
